@@ -4,8 +4,8 @@ require 'pry'
 # each word is in the string
 # author: Matej Lietava
 class SubstringProject
-    
-    def substrings(string, array_of_words)
+
+    def substrings_simple(string, array_of_words)
         result_hash = Hash.new
         string.downcase!
         array_of_words.each do |word|
@@ -21,8 +21,20 @@ class SubstringProject
         result_hash
     end
 
-    substring = SubstringProject.new
-    string  = "Howdy partner, sit down! How's it going?";
-    dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit", "below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
-    puts substring.substrings(string, dictionary)
+    # Method using scan
+    def substrings(string, array_of_words)
+        result_hash = Hash.new
+        string.downcase!
+        count = 0;
+        array_of_words.each do |word|
+            count = string.scan(word).length
+            result_hash[word] = count unless count == 0
+        end
+        result_hash
+    end
+
+    # substring = SubstringProject.new
+    # string  = "Howdy partner, sit down! How's it going?"
+    # dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit", "below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
+    # puts substring.substrings(string, dictionary)
 end

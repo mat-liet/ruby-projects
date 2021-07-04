@@ -1,5 +1,5 @@
 require 'spec_helper'
-require_relative '../caesar_project'
+require_relative '../projects/caesar_project'
 
 # This is the test class for the Caesar cypher project
 # author: Matej Lietava

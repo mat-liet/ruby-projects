@@ -81,9 +81,4 @@ class CaesarProject
             result_str
         end
     end
-
-    caesar = CaesarProject.new
-    string = "This is a test?"
-    shift = 193847
-    puts caesar.caesar_cipher_ord(string, shift)
 end

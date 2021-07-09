@@ -2,19 +2,34 @@ require 'pry'
 
 class StockPicker
 
-    # ary.each_with_index.min  # => [1, 4]
-    # first is value and second is index
     def pickstock(array)
-        min_val_index = array.each_with_index.min[1]
-        # puts min_val_index
-        highest_value_index = array.each_with_index.max[1]
-        # puts highest_value_index
-        until highest_value_index > min_val_index
-            array[highest_value_index + 1, array.length]
+        gain = 0
+        min_index = 0
+        max_index = 0
+        for i in 0...array.length do
+            min = array[i]
+            max = array[i]
+            max_array = []
+            for j in i...array.length do
+                if array[j] > max
+                    max = array[j]
+                    max_array[0] = max
+                    max_array[1] = j
+                end
+            end
+            puts "Min: " + min.to_s + " Max: " + max.to_s
+            temp_gain = max - min
+            if temp_gain > gain
+                gain = temp_gain
+                min_index = i
+                max_index = max_array[1]
+            end
+            puts "Gain: " + gain.to_s
         end
-        puts [min_val_index, highest_value_index]
+            
+        return [min_index, max_index]
     end
 
     picker = StockPicker.new
-    picker.pickstock([17,3,6,9,15,8,6,1,10])
+    puts picker.pickstock([17,3,6,9,15,8,6,1,10]).to_s
 end

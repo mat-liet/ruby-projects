@@ -31,5 +31,5 @@ class StockPicker
     end
 
     picker = StockPicker.new
-    puts picker.pickstock([17,3,6,9,15,8,6,1,10]).to_s
+    puts picker.pickstock([17,5,6,9,15,8,6,1,119]).to_s
 end

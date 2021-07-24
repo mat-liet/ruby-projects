@@ -1,5 +1,7 @@
 require 'pry'
 
+# This class contains a method that finds the best day to buy and sell.
+# author: Matej Lietava
 class StockPicker
 
     def pickstock(array)
@@ -30,6 +32,23 @@ class StockPicker
         return [min_index, max_index]
     end
 
+    def pickstock_simplified(array)
+        min = array[0]
+        min_pointer = 0
+        gain = 0
+        days = []
+        array.each_with_index do |num, index|
+            if num < min 
+                min = num
+                min_pointer = index
+            elsif (num-min) > gain
+                gain = num - min
+                days = [min_pointer, index]
+            end
+        end
+        days
+    end
+
     picker = StockPicker.new
-    puts picker.pickstock([17,5,6,9,15,8,6,1,119]).to_s
+    puts picker.pickstock_simplified([17,5,6,9,15,8,6,1,119]).to_s
 end

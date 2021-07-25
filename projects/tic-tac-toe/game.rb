@@ -10,9 +10,6 @@ class Game
     attr_accessor :player_one
     attr_accessor :player_two
     attr_accessor :board
-    # attr_accessor :won
-    # attr_accessor :full
-    # attr_accessor :turn_player
 
     def initialize()
         puts "What is the name of player one?"
@@ -28,42 +25,40 @@ class Game
         @player_two = Player.new(player_two_name, player_two_symbol)
         
         @board = Board.new
-        # @won = false
-        # @full = false
-        # @turn_player = player_one
     end
 
-    public def start_game()
+    public 
+    def play_game()
         won = false
         full = false
         turn_player = player_one
+        turn = 1
         board.print_board
         until won || full do
-            # binding.pry
             puts "#{turn_player.player_name}, please enter a number that is available from the board to place your symbol"
             index = gets.chomp.to_i
             board.change_symbol(turn_player.symbol, index)
             board.print_board
             if board.is_won(turn_player.symbol)
-                # binding.pry
                 won = true
-            # elsif board.is_full
-            #     full = true
+            elsif turn >= 9
+                full = true
             else
-                # binding.pry
                 if turn_player.player_name == player_one.player_name
-                    # binding.pry
                     turn_player = player_two
                 else
-                    # binding.pry
                     turn_player = player_one
                 end
             end
-            # binding.pry
+            turn += 1
         end
-        puts "Well done, #{turn_player.player_name}, you have won the game!"
+        if won 
+            puts "Well done, #{turn_player.player_name}, you have won the game!"
+        elsif full
+            puts "The board is full, it is a draw!"
+        end
     end
 end
 
 game = Game.new
-game.start_game
+game.play_game

@@ -7,9 +7,9 @@ class Board
     attr_accessor :array
 
     def initialize()
-        # @array = Array.new(3) {Array.new(3)}
-        @array = [["X", "O", 3], [4, 5, 6], [7, 8, "X"]]
-        # populate_board
+        @array = Array.new(3) {Array.new(3)}
+        # @array = [["X", "O", 3], ["X", 5, 6], ["O", 8, "X"]]
+        populate_board
     end
 
     public 
@@ -76,18 +76,13 @@ class Board
     def column_win(symbol)
         win = false
         for i in 0..2 do
-            same = false
-            binding.pry
-            for j in 0..2 do
-                if symbol == array[j][i].to_s
-                    same = true
-                    binding.pry
-                else
-                    same = false
-                    binding.pry
-                end
+            char_one = array[0][i]
+            char_two = array[1][i]
+            char_three = array[2][i]
+
+            if char_one == char_two && char_one == char_three
+                win = true
             end
-            if same == true then win = same end
         end
         win
     end
@@ -102,12 +97,5 @@ class Board
         end
         win
     end
-
-    public
-    def is_full
-    end
     
 end
-
-board = Board.new
-puts board.is_won("X")

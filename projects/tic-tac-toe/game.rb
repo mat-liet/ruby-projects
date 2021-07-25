@@ -14,11 +14,6 @@ class Game
     attr_accessor :board
 
     def initialize
-        @board = Board.new
-    end
-
-    public 
-    def play_game
         puts "What is the name of player one?"
         player_one_name = gets.chomp
         puts "What would you like your symbol to be?"
@@ -48,6 +43,11 @@ class Game
         end
         @player_two = Player.new(player_two_name, player_two_symbol)
         
+        @board = Board.new
+    end
+
+    public 
+    def play_game
         won = false
         full = false
         turn_player = player_one
@@ -86,15 +86,14 @@ class Game
         elsif full
             puts "The board is full, it is a draw!"
         end
+        board.populate_board
     end
 
     public
     def run
         finished = false
-        
         until finished do
-            game = Game.new
-            game.play_game
+            self.play_game
             puts "Would you like to play another game? (Y/N)"
             replay = gets.chomp
             if replay.downcase == "n"

@@ -21,7 +21,7 @@ class Board
         end
     end
 
-    private 
+    public 
     def populate_board
         counter = 1
         array.each_with_index do |num, i|

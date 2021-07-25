@@ -1,13 +1,15 @@
 #This class will contain the board and the methods to change the tile.
 # author: Matej Lietava
+require 'pry'
 
 class Board
     
     attr_accessor :array
 
     def initialize()
-        @array = Array.new(3) {Array.new(3)}
-        populate_board
+        # @array = Array.new(3) {Array.new(3)}
+        @array = [["X", "O", 3], [4, 5, 6], [7, 8, "X"]]
+        # populate_board
     end
 
     public 
@@ -50,8 +52,9 @@ class Board
     end
 
     public
-    def is_won
-        if columns_win || row_win || diagonal_win
+    def is_won(symbol)
+        # binding.pry
+        if column_win(symbol) || row_win(symbol) || diagonal_win(symbol)
             true
         else
             false
@@ -59,18 +62,45 @@ class Board
     end
 
     private
-    def columns_win
-        array.each_with_index do |num, i|
-            if array[i][0] != turn_player.symbol
-                false
+    def row_win(symbol)
+        win = false
+        array.each_with_index do |num, i| # row
+            if array[i].all?(symbol)
+                win = true
             end
         end
-        true
+        win
     end
 
     private
-    def row_win
-        
+    def column_win(symbol)
+        win = false
+        for i in 0..2 do
+            same = false
+            binding.pry
+            for j in 0..2 do
+                if symbol == array[j][i].to_s
+                    same = true
+                    binding.pry
+                else
+                    same = false
+                    binding.pry
+                end
+            end
+            if same == true then win = same end
+        end
+        win
+    end
+
+    private
+    def diagonal_win(symbol)
+        first_diag = [array[0][0], array[1][1], array[2][2]]
+        second_diag = [array[0][2], array[1][1], array[2][0]]
+        win = false
+        if first_diag.all?(symbol) || second_diag.all?(symbol)
+            win = true
+        end
+        win
     end
 
     public
@@ -80,6 +110,4 @@ class Board
 end
 
 board = Board.new
-board.print_board
-board.change_symbol("X", 3)
-board.print_board
+puts board.is_won("X")

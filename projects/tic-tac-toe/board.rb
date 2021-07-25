@@ -6,14 +6,14 @@ class Board
     
     attr_accessor :array
 
-    def initialize()
+    def initialize
         @array = Array.new(3) {Array.new(3)}
         # @array = [["X", "O", 3], ["X", 5, 6], ["O", 8, "X"]]
         populate_board
     end
 
     public 
-    def print_index()
+    def print_index
         array.each_with_index do |num, i|
             array[i].each_with_index do |second_num, j|
                 puts second_num
@@ -22,7 +22,7 @@ class Board
     end
 
     private 
-    def populate_board()
+    def populate_board
         counter = 1
         array.each_with_index do |num, i|
             array[i].each_with_index do |second_num, j|
@@ -33,7 +33,7 @@ class Board
     end
 
     public 
-    def print_board()
+    def print_board
         puts "" 
         puts " " + array[0][0].to_s + " | " + array[0][1].to_s + " | " + array[0][2].to_s
         puts "---" + "+" + "---" + "+" + "---"

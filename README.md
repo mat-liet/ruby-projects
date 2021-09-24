@@ -23,7 +23,7 @@ A class that takes in an array of stock prices, one for each hypothetical day. I
 
 A class that takes a word as the first argument and then an array of valid substrings (a dictionary) as the second argument. It returns a hash listing each substring (case insensitive) that was found in the original string and how many times it was found.
 
-##Tic tac toe
+## Tic tac toe
 
 This project took a bit longer to implement than the rest. This is a tic-tac-toe game on the command line where two human players can play against each other and the board is displayed in between turns.
 
